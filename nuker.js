@@ -11,8 +11,9 @@ export async function main(ns) {
 	if(ns.fileExists("bruteSSH.exe")){crackers++;}
 	for(let i = 0; i < servers.length; i++)
 	{
-		if(ns.getServerNumPortsRequired(servers[i]) > crackers){continue;}
-    ns.brutessh(servers[i]);
+		let ports = ns.getServerNumPortsRequired(servers[i]);
+		if(ports > crackers){continue;}
+		if(ports > 0){ns.brutessh(servers[i]);}
 		ns.nuke(servers[i]);
 	}
 }
