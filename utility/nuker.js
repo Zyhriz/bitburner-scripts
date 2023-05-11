@@ -9,11 +9,13 @@ export async function main(ns) {
 	const servers = ns.read("servers.txt").split("\n");
 	var crackers = 0;
 	if(ns.fileExists("bruteSSH.exe")){crackers++;}
+	if(ns.fileExists("FTPCrack.exe")){crackers++;}
 	for(let i = 0; i < servers.length; i++)
 	{
 		let ports = ns.getServerNumPortsRequired(servers[i]);
 		if(ports > crackers){continue;}
 		if(ports > 0){ns.brutessh(servers[i]);}
+		if(ports > 1){ns.ftpcrack(servers[i]);}
 		ns.nuke(servers[i]);
 	}
 }
