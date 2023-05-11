@@ -10,6 +10,7 @@ export async function main(ns) {
 		{
 			let threads = Math.floor((ns.getServerMaxRam(servers[i])-ns.getServerUsedRam(servers[i]))/ns.getScriptRam(file));
 			if(threads <= 0){continue;}
+			if(ns.getHackingLevel()<ns.getServerRequiredHackingLevel(servers[i])){continue;}
 			ns.exec(file,servers[i],threads);
 		}
 	}
