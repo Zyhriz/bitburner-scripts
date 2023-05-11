@@ -5,7 +5,7 @@ var servers = [];
 export async function main(ns) {
 	if(ns.fileExists("servers.txt")){ns.clear("servers.txt");}
 	advScan(ns,"home");
-	for(var j = 0; j < servers.length; j++){ns.write("servers.txt", servers[j]+"\n", "a");}
+	ns.write("servers.txt",servers.toString().replaceAll(',',"\n"),"w");
 }
 
 async function advScan(ns,serverName) {
