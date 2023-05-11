@@ -18,6 +18,11 @@ function updateServer(serverName) {
 		let fname = filesRunning[i].filename;
 		if(fname=="hack.js"||fname=="grow.js"||fname=="weaken.js"){continue;}
 		let fmem = ns.getServerMaxRam(serverName) - ns.getServerUsedRam(serverName);
+		if(fmem < 1.8)
+		{
+			ns.print(serverName+" doesn't have enough free memory. Continuing...");
+			continue;
+		}
 		if(ns.getServerSecurityLevel(serverName)>ns.getServerMinSecurityLevel(serverName)*securityThreshold)
 		{
 			ns.exec("weaken.js",serverName,Math.floor(fmem/1.8));
